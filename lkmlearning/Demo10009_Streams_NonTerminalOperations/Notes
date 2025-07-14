@@ -1,0 +1,42 @@
+What are non-terminal/intermediate operations -
+  will transform a stream into another stream.
+  Intermediate operations are Lazy. All intermediate operations will NOT be executed without 
+  a terminal operation at the end. In a way, an intermediate operation is memorized and is 
+  recalled as soon as a terminal operation is invoked.
+  We can chain multiple intermediate operations and none of them will do anything until we invoke
+  a terminal operation. At that time, all of the intermediate operations that we invoked earlier
+  will be invoked along with the terminal operation.
+
+Intermediate Operations -
+1) filter(Predicate<T>) - Refer Tester1001Filter.java
+	    Filters the stream based on given condition.
+        It takes Predicate reference as an argument. Predicate is a functional interface which
+        has boolean test(T t) method. So we can also pass lambda expression here.
+2) map(Function<T>) - Refer Tester1002Map.java
+        map() is used to transform one object into other.
+        It takes a Function reference as an argument. Function is a functional interface which
+        has apply() method which takes one parameter and returns the value.
+        Following functions return specific primitive stream.
+        IntStream mapToInt(ToIntFunction<? super T> mapper)
+		LongStream mapToLong(ToLongFunction<? super T> mapper)
+		DoubleStream mapToDouble(ToDoubleFunction<? super T> mapper)      
+3) flatmap(Function<T>) -
+        Discussed separately
+4) sorted(Comparator<T>) -
+        Discussed separately
+5) peek(Consumer<T>) - Refer Tester1003Peek.java
+        Use to visualize how stream operations behave. Useful for understanding the implications and interactions of
+        complex intermediate operations. Used for debugging. The peek method accepts a Consumer which accepts a 
+        single argument and returns nothing. The peek method returns the same elements of the stream that were passed
+        to it, so there will be no changes to the contents of the stream unless the block of code passed to the 
+        peek method mutates the objects in the stream. Mainly peek method is used for read-only printing of the 
+        contents of the objects in the stream at the time of invocation of that method.
+6) distinct() - Refer Tester1004Distinct.java
+		Returns a stream consisting of distinct elements in a stream. It uses hashCode() and 
+		equals() methods to get distinct elements. 
+7) limit(long n) - Refer Tester1005Limit.java
+		Limit the number of elements that will be extracted from a stream. If the stream size is more than the limit,
+		returns entire stream. If limit is negative, throws IllegalArgumentException.
+8) skip(long n) - Refer Tester1006Skip.java
+		Returns a new stream skipping first n elements. If the stream size is less than the skip value,
+		returns entire stream. If skip value is negative, throws IllegalArgumentException.

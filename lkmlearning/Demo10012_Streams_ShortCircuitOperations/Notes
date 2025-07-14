@@ -1,0 +1,36 @@
+Parallel streams are for utilizing multiple cores of the processor. Normally any java code has one stream of 
+processing, where it is executed sequentially. Whereas by using parallel streams, we can divide the code into 
+multiple streams that are executed in parallel on separate cores. The order of execution, however, is not under
+our control. Therefore, it is advisable to use parallel streams in cases where no matter what is the order of 
+execution.  Parallel streams split the stream into multiple parts. Each part is processed by a different thread 
+at the same time (in parallel).  The number of threads available to process parallel streams equals the number of
+available cores of the processor of your machine.
+
+
+Short circuit operations -
+May finish before traversing all the elements of the stream.
+ 1) Optional findFirst() - Refer Tester1001FindFirst.java.		
+ 					Returns the very first element wrapped in Optional object. If the 
+ 					stream is empty, returns Empty Optional object.
+ 					The behaviour of findFirst() in parallel stream is same as in sequential stream because 
+ 					findFirst() will always find first element.
+ 2) Optional findAny() - Refer Tester1002FindAny.java	// introduce parallel stream in short
+ 					Returns any element from the stream wrapped in Optional object. Not
+                	guaranteed return first. 
+                	findAny() in parallel stream will find any element.
+ 3) boolean anyMatch(Predicate p) - Refer Tester1003Anymatch.java
+ 					Returns true if any of the elements in a stream matches the given 
+ 					predicate.It terminates as soon as gets first element. If the stream is
+ 				    empty or if there's no matching element, it returns false.
+ 4) boolean allMatch(Predicate p) - Refer Tester1004Allmatch.java
+ 					Returns true only if ALL elements in the stream match the given 
+ 					predicate. The predicate checks each element of the stream. If all 
+ 					elements satisfy the condition of predicate, it returns true otherwise 
+ 					false. It may return early with false result when any element 
+ 					doesn't match first. Return true if the stream is empty.
+ 5) boolean noneMatch(Predicate p) : Refer Tester1005Nonematch.java
+ 					 Is the opposite of allMatch(), it returns true if NONE of the elements
+ 					 in the stream match the given predicate. It terminates, if match found.
+ 					 If the stream is empty, this method returns also TRUE without 
+ 					 evaluating the predicate. Return true if the stream is empty.
+ // add 3 uses cases for 3 to 5. normal, short circuit, empty					 

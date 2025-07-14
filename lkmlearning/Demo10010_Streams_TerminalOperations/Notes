@@ -1,0 +1,72 @@
+What are terminal operations -
+  A operation which produces non-stream. May result in primitive value, collection or no value at all.
+  Stream has many operations which can be pipe lined together to get desired result. Some operations produce another 
+  stream as a result and some operations produce non-stream values as a result. The operations which return another 
+  stream as a result are called intermediate operations and the operations which return non-stream values like 
+  primitive or object or collection or return nothing are called terminal operations
+  Pipeline of operations can have maximum one terminal operation, that too at the end.
+  
+  stream -> operation 1 -> operation 2 -> ..... -> operation n -> terminal operation -> output
+ 
+  Operation1 => Upstream to opeation2
+  Operation2 => downstream to Operation1
+ 
+  Data flows through all operations till terminal operation.
+  
+  Intermediate operations are lazily loaded. When you call intermediate operations, they are actually not executed. 
+  They are just stored in the memory and executed only when the terminal operation is called on the stream.
+  Stream stays unfunctional/passive till terminal operation is introduced.
+ 
+ 
+List of all Stream terminal operations:// Implement using Lambda and method references also.
+1)  forEach() - Refer Tester1001ForEach.java
+        forEach(Consumer obj) => forEach(void accept(T t))
+        
+2)  forEachOrdered() - Will be discussed in Parallel streams
+
+3)  toArray() - Refer Tester1002ToArray.java
+       Returns an array containing the elements of this stream.
+
+4)  toArray(IntFunction fun) => toArray(R apply(int)) - Refer  Tester1002ToArray.java
+
+5)  collect() - Refer Tester1003Collect.java
+        Collectors object is passed to collect method.
+        Collectors object has methods to convert stream to list, set, collection and map.
+        Also it has calculation methods on stream like summingDouble, summingInt, summingDouble, summingInt,
+            averagingDouble, averagingInt, averagingLong.
+        It can also partition a stream in two groups based on certain condition.	// Introduce partitioning and grouping together
+
+6)  count() - Refer Tester1003MaxMinCount.java
+       Counts no of items in stream
+         
+7)  min() - Refer Tester1003MaxMinCount.java	// Comparator will be introduced later
+       Gets min value from the stream based on condition
+
+8)  max() - Refer Tester1003MaxMinCount.java
+	   Gets max value from the stream based on condition
+		
+8)  summarizingXxx() - 
+	   summarizingInt(), summarizingLong(), summarizingDouble()		
+       summarizing collectors calculate a bunch of statistical calculations for a given numerical value derived from
+       the stream’s objects, and return these statistics encapsulated inside objects of specially defined 
+       statistical classes for this purpose like IntSummaryStatistics, LongSummaryStatistics & DoubleSummaryStatistics.
+       The statistical attributes encapsulated by the summary statistics classes are – count of numeric value derived,
+       sum of values, minimum value, maximum value, average of all values.
+	   
+9)  reduce()
+
+10) anyMatch()
+
+11) allMatch()
+
+12) noneMatch()
+
+13) findAny()
+
+14) findFirst()
+
+ 
+
+https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html 
+https://www.javaprogramto.com/2020/04/java-8-14-stream-terminal-operations.html 
+https://www.amitph.com/java-8-streams-terminal-operations/

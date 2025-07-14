@@ -1,0 +1,33 @@
+Optional class -
+  To avoid NullPointerException, we have to check if(obj != null) always to perform any 
+  operation on obj. When we are calling methods-chain like
+  method1().method2().method3()...., we have to check null for every object. So avoid such
+  bulky code, Java 8 introduced Optional class. 
+  It is used to remove the need for multiple null checks to protect against the 
+  NullPointerExceptions during run-time.
+  Optional is a container object used to contain not-null objects. 
+  Optional object is used to represent null value as absent value. 
+  
+  Methods of Optional class -
+  1) empty()		     - creates empty object
+  2) of()                - create Optional object with non-null value. If null value passed, throws NullPointerException.  
+  3) ofNullable()        - create Optional object with non-null value. If null value passed, 
+                           creates empty Optional object. 
+  4) get()               - converting an existing Optional to its value. If Optional is empty, 
+                           throws NoSuchElementException.
+  5) isPresent()         - checks if Optional contains any value. Return true if there is a value present, 
+                           otherwise false.
+  6) ifPresent()         - If a value is present, invoke the specified consumer with the value, otherwise do nothing.
+                           Enables us to run some code on the wrapped value if it's found to be non-null.    
+  7) orElse()            - Return the value if present, otherwise return other. 
+                           It takes one parameter, which acts as a default value. 
+                           The orElse() method returns the wrapped value if Optional is present, and if not, returns 
+                           its argument.  But argument is evaluated even if Optional is present. 
+  8) orElseGet()         - Same like orElse() but if the Optional is not empty, the argument is not even executed.
+  9) orElseThrow()       - It returns value only if it's present. Otherwise, it'll throw an exception.
+  10) ifPresentOrElse()  - Java 9 method.
+                           If Optional value is present, perform some action. If not, perform some other action.
+                           
+https://www.tabnine.com/code/java/classes/java.util.Optional
+https://www.baeldung.com/java-optional
+https://www.callicoder.com/java-8-optional-tutorial/
